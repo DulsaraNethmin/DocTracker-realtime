@@ -1,0 +1,20 @@
+{
+  "name": "doctracker-realtime",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index",
+    "start": "node index"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.3",
+    "nodemon": "^2.0.15",
+    "socket.io": "^2.3.0"
+  },
+  "engines": {
+    "node": "16.x"
+  }
+}
