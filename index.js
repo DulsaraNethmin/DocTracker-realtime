@@ -41,7 +41,7 @@ io.on("connection",(socket)=>{
 //     return res.json("App is working.")
 // });
 
-app.rout('/test').get((req,res)=>{
+app.route('/test').get((req,res)=>{
     console.log("hello");
     return res.json("hi");
 })
