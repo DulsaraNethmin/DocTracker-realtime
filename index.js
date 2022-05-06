@@ -6,13 +6,9 @@ const app=express();
 const server=http.createServer(app)
 const io=require('socket.io')(server)
 
-//middleware
 
 app.use(express.json);
-//app.use(cors());
-
-
-//http.get('/',(req,res)=>res.send("hi"))
+//app.get('/',(req,res)=>{res.send("Real time Server")});
 
 var users={};
 io.on("connection",(socket)=>{
@@ -26,21 +22,26 @@ io.on("connection",(socket)=>{
         console.log(msg);
         var targetId=msg.target;
         //console.log("target id is :"+ targetId);
+        console.log(msg)
         if(users[targetId]){
-            users[targetId].emit('msg',{"message":msg.message,"time":msg.time});
+            users[targetId].emit('msg',msg);
+        }
+    });
+
+    socket.on('new_msg',(id)=>{
+        console.log(`Mail Target is ${id}`);
+        if(users[id]){
+            users[id].emit('incoming_mail',"you have a Incoming mail.");
         }
     });
 });
 
-// app.route('/test').get((req,res)=>{
-//     console.log("test request");
-//     return res.json("App is working.")
-// });
 
-app.route('/test').get((req,res)=>{
-    console.log("hello");
-    return res.json("hi");
-})
+
+
+
 server.listen(port,"0.0.0.0",()=>{
     console.log("server started on: "+port);
 })
+
+//app.listen(7000,()=>{console.log('normal server run...')})
